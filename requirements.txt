@@ -3,3 +3,4 @@ scapy
 pandas
 plotly
 watchdog
+psutil
