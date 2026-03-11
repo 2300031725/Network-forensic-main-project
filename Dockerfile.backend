@@ -1,0 +1,36 @@
+FROM python:3.10-slim
+
+# Install system dependencies required for packet sniffing and db connection
+RUN apt-get update && apt-get install -y \
+    libpcap-dev \
+    tcpdump \
+    default-libmysqlclient-dev \
+    build-essential \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file to the working directory
+COPY requirements.txt .
+
+# Install python dependencies.
+# We add missing dependencies that we know from the codebase but might missing in requirements.txt
+# e.g., fastapi, uvicorn, mysql-connector-python, python-dotenv
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir fastapi uvicorn mysql-connector-python python-dotenv python-multipart psutil pdfplumber passlib[bcrypt] 'pydantic[email]'
+
+# Copy backend files
+COPY backend /app/backend
+COPY sniffer.py /app/sniffer.py
+COPY .env /app/.env
+
+# Create an empty __init__.py if missing in backend
+RUN touch /app/backend/__init__.py
+
+# Expose backend port
+EXPOSE 8000
+
+# Run the FastAPI server
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
