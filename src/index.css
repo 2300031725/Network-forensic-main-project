@@ -1,0 +1,206 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap");
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    font-family: "Orbitron", "Segoe UI", "Tahoma", sans-serif;
+    background-color: #0a1a24;
+    background-image:
+      radial-gradient(circle at 12% 10%, rgba(0, 204, 255, 0.12), transparent 40%),
+      radial-gradient(circle at 85% 5%, rgba(0, 150, 200, 0.12), transparent 36%),
+      linear-gradient(180deg, rgba(10, 26, 36, 0.98), rgba(8, 20, 30, 0.94)),
+      linear-gradient(transparent 95%, rgba(0, 255, 255, 0.06) 96%, transparent 98%),
+      linear-gradient(90deg, transparent 95%, rgba(0, 255, 255, 0.06) 96%, transparent 98%);
+    background-size: auto, auto, auto, 80px 80px, 80px 80px;
+    background-position: center, center, center, 0 0, 0 0;
+    color: #d7f6ff;
+    @apply antialiased transition-colors duration-300;
+  }
+
+  body.light {
+    background-color: #0a1a24;
+    background-image:
+      radial-gradient(circle at 12% 10%, rgba(0, 204, 255, 0.12), transparent 40%),
+      radial-gradient(circle at 85% 5%, rgba(0, 150, 200, 0.12), transparent 36%),
+      linear-gradient(180deg, rgba(10, 26, 36, 0.98), rgba(8, 20, 30, 0.94)),
+      linear-gradient(transparent 95%, rgba(0, 255, 255, 0.06) 96%, transparent 98%),
+      linear-gradient(90deg, transparent 95%, rgba(0, 255, 255, 0.06) 96%, transparent 98%);
+    background-size: auto, auto, auto, 80px 80px, 80px 80px;
+    color: #d7f6ff;
+  }
+}
+
+.glass-panel {
+  @apply bg-slate-800/60 border border-slate-700 rounded-2xl transition-all duration-300;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 0 1px rgba(0, 210, 255, 0.18),
+    0 0 25px rgba(0, 200, 255, 0.18),
+    inset 0 0 0 1px rgba(0, 180, 220, 0.12);
+}
+
+body.light .glass-panel {
+  @apply bg-slate-800/60 border-slate-700;
+}
+
+.mono {
+  font-family: "Share Tech Mono", "Consolas", "Courier New", monospace;
+}
+
+@layer utilities {
+  body.theme-cyber {
+    --app-bg: #0a1a24;
+    --app-surface: rgba(10, 26, 36, 0.8);
+    --app-surface-2: rgba(12, 32, 44, 0.9);
+    --app-border: rgba(0, 210, 255, 0.22);
+    --app-text: #d7f6ff;
+    --app-muted: #7fb5c9;
+    --app-accent: #33e6ff;
+    --app-accent-2: #1fb7ff;
+    --app-warn: #ff9b4a;
+    --app-danger: #ff4d6d;
+  }
+
+  body.theme-cyber .bg-slate-900 {
+    background-color: var(--app-bg);
+  }
+
+  body.theme-cyber .bg-slate-800 {
+    background-color: var(--app-surface);
+  }
+
+  body.theme-cyber .bg-slate-700 {
+    background-color: var(--app-surface-2);
+  }
+
+  body.theme-cyber .border-slate-800,
+  body.theme-cyber .border-slate-700,
+  body.theme-cyber .border-slate-600,
+  body.theme-cyber .border-slate-500 {
+    border-color: var(--app-border);
+  }
+
+  body.theme-cyber .text-slate-100,
+  body.theme-cyber .text-slate-200 {
+    color: var(--app-text);
+  }
+
+  body.theme-cyber .text-slate-300,
+  body.theme-cyber .text-slate-400,
+  body.theme-cyber .text-slate-500 {
+    color: var(--app-muted);
+  }
+
+  body.theme-cyber .bg-blue-600,
+  body.theme-cyber .bg-blue-500,
+  body.theme-cyber .bg-emerald-500,
+  body.theme-cyber .bg-green-600 {
+    background-color: var(--app-accent);
+  }
+
+  body.theme-cyber .text-blue-400,
+  body.theme-cyber .text-blue-500,
+  body.theme-cyber .text-emerald-300,
+  body.theme-cyber .text-green-400 {
+    color: var(--app-accent);
+  }
+
+  body.theme-cyber .border-blue-500,
+  body.theme-cyber .border-emerald-500,
+  body.theme-cyber .border-green-500 {
+    border-color: var(--app-accent);
+  }
+
+  body.theme-cyber .bg-emerald-500\/10 { background-color: rgba(51, 230, 255, 0.10); }
+  body.theme-cyber .bg-emerald-500\/15 { background-color: rgba(51, 230, 255, 0.15); }
+  body.theme-cyber .bg-emerald-500\/20 { background-color: rgba(51, 230, 255, 0.20); }
+  body.theme-cyber .border-emerald-500\/20 { border-color: rgba(51, 230, 255, 0.20); }
+
+  body.theme-cyber .hover\\:bg-blue-500:hover,
+  body.theme-cyber .hover\\:bg-blue-600:hover,
+  body.theme-cyber .hover\\:bg-emerald-400:hover,
+  body.theme-cyber .hover\\:bg-emerald-500:hover,
+  body.theme-cyber .hover\\:bg-green-700:hover {
+    background-color: var(--app-accent-2);
+  }
+
+  body.theme-cyber .hover\\:text-blue-400:hover,
+  body.theme-cyber .hover\\:text-blue-500:hover,
+  body.theme-cyber .hover\\:text-emerald-200:hover {
+    color: var(--app-accent-2);
+  }
+
+  body.theme-cyber .shadow-lg,
+  body.theme-cyber .shadow-xl,
+  body.theme-cyber .shadow-2xl {
+    box-shadow:
+      0 0 0 1px rgba(0, 220, 255, 0.18),
+      0 0 30px rgba(0, 200, 255, 0.22);
+  }
+}
+
+body.theme-cyber :is(.hud-box, .glass-panel, .bg-slate-800.border-slate-700, .bg-slate-800.border-slate-800, .bg-slate-900.border-slate-800) {
+  position: relative;
+  overflow: hidden;
+}
+
+body.theme-cyber :is(.hud-box, .glass-panel, .bg-slate-800.border-slate-700, .bg-slate-800.border-slate-800, .bg-slate-900.border-slate-800)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(51, 230, 255, 0.9) 0 18px, transparent 18px) top left,
+    linear-gradient(180deg, rgba(51, 230, 255, 0.9) 0 18px, transparent 18px) top left,
+    linear-gradient(90deg, rgba(51, 230, 255, 0.9) 0 18px, transparent 18px) top right,
+    linear-gradient(180deg, rgba(51, 230, 255, 0.9) 0 18px, transparent 18px) top right,
+    linear-gradient(90deg, rgba(51, 230, 255, 0.9) 0 18px, transparent 18px) bottom left,
+    linear-gradient(180deg, rgba(51, 230, 255, 0.9) 0 18px, transparent 18px) bottom left,
+    linear-gradient(90deg, rgba(51, 230, 255, 0.9) 0 18px, transparent 18px) bottom right,
+    linear-gradient(180deg, rgba(51, 230, 255, 0.9) 0 18px, transparent 18px) bottom right;
+  background-size: 18px 2px, 2px 18px, 18px 2px, 2px 18px, 18px 2px, 2px 18px, 18px 2px, 2px 18px;
+  background-repeat: no-repeat;
+  background-position: 10px 10px, 10px 10px, calc(100% - 28px) 10px, calc(100% - 10px) 10px, 10px calc(100% - 10px), 10px calc(100% - 28px), calc(100% - 28px) calc(100% - 10px), calc(100% - 10px) calc(100% - 28px);
+  opacity: 0.8;
+}
+
+body.theme-cyber :is(.hud-box, .glass-panel, .bg-slate-800.border-slate-700, .bg-slate-800.border-slate-800, .bg-slate-900.border-slate-800)::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: inherit;
+  border: 1px solid rgba(51, 230, 255, 0.14);
+  pointer-events: none;
+}
+
+.hud-no-corner {
+  position: relative;
+  overflow: visible;
+}
+
+.hud-no-corner::before,
+.hud-no-corner::after {
+  content: none !important;
+}
+
+@keyframes hud-pulse {
+  0% { box-shadow: 0 0 0 1px rgba(0, 220, 255, 0.18), 0 0 22px rgba(0, 200, 255, 0.18); }
+  50% { box-shadow: 0 0 0 1px rgba(0, 220, 255, 0.32), 0 0 30px rgba(0, 210, 255, 0.28); }
+  100% { box-shadow: 0 0 0 1px rgba(0, 220, 255, 0.18), 0 0 22px rgba(0, 200, 255, 0.18); }
+}
+
+body.theme-cyber :is(.glass-panel, .bg-slate-800.border-slate-700, .bg-slate-800.border-slate-800) {
+  animation: hud-pulse 6s ease-in-out infinite;
+}
+
+body.theme-cyber :is(.glass-panel, .bg-slate-800.border-slate-700, .bg-slate-800.border-slate-800):hover {
+  transform: translateY(-1px);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
